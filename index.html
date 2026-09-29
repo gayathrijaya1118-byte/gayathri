@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FitBuddy - AI Fitness Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="top-bar">
+        <span class="logo">FitBuddy</span>
+        <button id="theme-toggle" title="Toggle dark mode">🌙</button>
+    </div>
+
+    <div class="container">
+        <h1>FitBuddy</h1>
+        <p class="subtitle">AI Fitness Plan Generator powered by Gemini</p>
+
+        <form id="plan-form">
+            <div class="grid">
+                <label>Age
+                    <input type="number" id="age" min="10" max="100" required>
+                </label>
+
+                <label>Gender
+                    <select id="gender">
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+
+                <label>Height (cm)
+                    <input type="number" id="height" min="100" max="250" required>
+                </label>
+
+                <label>Weight (kg)
+                    <input type="number" id="weight" min="30" max="300" required>
+                </label>
+
+                <label>Fitness Goal
+                    <select id="goal">
+                        <option>Weight Loss</option>
+                        <option>Muscle Gain</option>
+                        <option>Stay Fit</option>
+                        <option>Improve Stamina</option>
+                    </select>
+                </label>
+
+                <label>Activity Level
+                    <select id="activity_level">
+                        <option>Sedentary</option>
+                        <option>Lightly Active</option>
+                        <option>Moderately Active</option>
+                        <option>Very Active</option>
+                    </select>
+                </label>
+
+                <label>Workout Days / Week
+                    <input type="number" id="workout_days" min="1" max="7" required>
+                </label>
+
+                <label>Diet Preference
+                    <select id="diet">
+                        <option>No preference</option>
+                        <option>Vegetarian</option>
+                        <option>Non-vegetarian</option>
+                        <option>Vegan</option>
+                        <option>Eggetarian</option>
+                    </select>
+                </label>
+            </div>
+
+            <label>Health Conditions / Injuries (optional)
+                <input type="text" id="conditions" placeholder="e.g. knee pain, none">
+            </label>
+
+            <button type="submit" id="submit-btn">Generate My Plan</button>
+        </form>
+
+        <div id="status"></div>
+
+        <div id="result-card" class="hidden">
+            <div id="result"></div>
+            <div class="result-actions">
+                <button id="download-btn">Download as PDF</button>
+                <button id="save-btn">Save to History</button>
+            </div>
+        </div>
+
+        <div id="history-section">
+            <h2>Past Plans</h2>
+            <div id="history-list"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
